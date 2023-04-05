@@ -1,5 +1,5 @@
 package com.example.model.manager;
-import com.example.*;
+import com.example.model.*;
 import com.example.model.user.*;
 import java.util.*;
 public class ManagerService extends Service {

@@ -1,5 +1,4 @@
 package com.example.model.manager;
-
 public class Accounting {
     private int expense;
     private int revenue;

@@ -20,8 +20,8 @@ public class UpdateCartServlet extends HttpServlet {
         String add = request.getParameter("add");
         String clear = request.getParameter("clear");
         user.bankPay();
-        if(remove != null) user.removeFromCart(product, (Integer) request.getParameter("quantity"));
-        else if(add != null) user.addToCart(product, (Integer) request.getParameter("quantity"));
+        if(remove != null) user.removeFromCart(product, Integer.parseInt(request.getParameter("quantity")));
+        else if(add != null) user.addToCart(product, Integer.parseInt(request.getParameter("quantity")));
         else if(clear != null) user.clearCart();
         request.setAttribute("User", user);
         RequestDispatcher view = request.getRequestDispatcher(".jsp");

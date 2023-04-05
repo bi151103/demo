@@ -24,7 +24,7 @@ public class LogInServlet extends HttpServlet {
             view.forward(request, response);
         }
         else {
-            request.setAttribute("Tài khoản hoặc mật khẩu không chính xác");
+            request.setAttribute("message", "Tài khoản hoặc mật khẩu không chính xác");
             RequestDispatcher view = request.getRequestDispatcher("login.jsp");
             view.forward(request, response);
         }

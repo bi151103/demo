@@ -1,7 +1,7 @@
 package com.example.model.user;
 import java.util.*;
 
-import com.example.*;
+import com.example.model.*;
 import com.example.model.manager.ManagerService;
 public class ClientService extends Service {
     public static User login(String userId, String password) {

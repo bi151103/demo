@@ -1,6 +1,5 @@
 package com.example.servlet.user;
 import com.example.model.user.*;
-import com.example.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import com.fasterxml.jackson.databind.ObjectMapper;

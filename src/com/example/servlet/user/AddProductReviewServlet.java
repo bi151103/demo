@@ -14,8 +14,8 @@ public class AddProductReviewServlet extends HttpServlet {
         User user = mapper.readValue(userJson, User.class);
         String productJson = request.getParameter("productJson");
         // Deserialize the JSON string into a User object
-        Product product = mapper.readValue(productJson, ProductForSale.class);
-        user.addProductReview(product, new ProductForSale.CustomerReview(request.getParameter("noOfStars"), request.getParameter("review")));
+        ProductForSale product = mapper.readValue(productJson, ProductForSale.class);
+        user.addProductReview(product, Integer.parseInt(request.getParameter("noOfStars")), request.getParameter("review"));
         request.setAttribute("user", user);
         RequestDispatcher view = request.getRequestDispatcher(".jsp");
         view.forward(request, response);
