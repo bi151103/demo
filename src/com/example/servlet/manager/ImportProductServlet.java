@@ -15,7 +15,7 @@ public class ImportProductServlet extends HttpServlet {
         Provider provider = mapper.readValue(providerJson, Provider.class);
         if(request.getParameter("clear") != null) ManagerService.clearNewProductsList();
         String quantity = request.getParameter("quantity");
-		ManagerService.importProduct(provider, (Integer) quantity);
+		ManagerService.importProduct(provider, Integer.parseInt(quantity));
         RequestDispatcher view = request.getRequestDispatcher(".jsp");
         view.forward(request, response);
     }     

@@ -1,5 +1,5 @@
 package com.example.model.user;
-import com.example.*;
+import com.example.model.*;
 
 import java.util.*;
 public class ProductForSale extends Product {
@@ -10,7 +10,7 @@ public class ProductForSale extends Product {
         this.category = category;
         this.quantity = quantity;
     }
-    class CustomerReview {
+    public class CustomerReview {
         public CustomerReview(int noOfStarts, String review) {
             this.noOfStars = noOfStarts;
             this.review = review;
@@ -28,13 +28,14 @@ public class ProductForSale extends Product {
     public int getUnitPrice() {return unitPrice;}
     public int getNoOfSolds() {return noOfSolds;}
     public ArrayList<CustomerReview> getReviews() {return crs;}
-    public void addCustomerReview(CustomerReview cr) {
-        this.crs.add(cr);
+    public void addCustomerReview(int noOfStars, String review) {
+        this.crs.add(new CustomerReview(noOfStars, review));
     }
     public static void updateNoOfSolds(User.CartState cartState) {
         int size = cartState.products.size();
         for(int i = 0; i < size; i++) {
             cartState.products.get(i).noOfSolds += cartState.quantityEachProduct.get(i);
+            cartState.products.get(i).quantity -= cartState.quantityEachProduct.get(i);
         }
     }
     public void updateQuantity(int quantity) {

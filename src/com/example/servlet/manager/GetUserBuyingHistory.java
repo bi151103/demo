@@ -5,7 +5,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-public class GetUserStatictis extends HttpServlet {
+public class GetUserBuyingHistory extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) 
         throws IOException, ServletException {
         response.setContentType("text/html");

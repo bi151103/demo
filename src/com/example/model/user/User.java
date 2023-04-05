@@ -36,7 +36,7 @@ public class User {
         /*Product number 1 have quantity is value at index of quantityEachProduct*/
         public ArrayList<ProductForSale> products;
         public ArrayList<Integer> quantityEachProduct;
-        public String state;
+        public String state;    
     }
     private boolean logInState;
     private String fullName;
@@ -58,16 +58,18 @@ public class User {
     public String getPhoneNums() {return phoneNums;}
     public String getUserId() {return userId;}
     public String getPassword() {return password;}
-    public boolean getLogInState() {return password;}
+    public boolean getLogInState() {return logInState;}
     public void addToCart(ProductForSale product, int quantity) {
         /*update products and quantity of each product in cartState*/
         cartState.products.add(product);
         cartState.quantityEachProduct.add(quantity);
+        cartState.totalCost += product.getUnitPrice() * quantity;
     }
     public void removeFromCart(ProductForSale product, int quantity) {
         /*update products and quantity of each product in cartState*/
         cartState.products.remove(product);
         cartState.quantityEachProduct.remove(quantity);
+        cartState.totalCost -= product.getUnitPrice() * quantity;
     }
     public void clearCart() {
         //clear all products and quantity of each product in cartState
@@ -81,6 +83,15 @@ public class User {
         orderState.products = cartState.products;
         orderState.quantityEachProduct = cartState.quantityEachProduct;
     }
+    public void updateBuyingHistory() {
+        /*update BuyingHistory based on cartState*/
+        for(ProductForSale product : cartState.products) {
+            buyingHistory.products.add(product);
+        }
+        for(int quantity : cartState.quantityEachProduct) {
+            buyingHistory.quantityEachProduct.add(quantity);
+        }
+    }
     public boolean bankPay() {
         //update orderState, bankAccount, buyingHistory, cartState
         if(bankAcc.pay(cartState.totalCost) == true) {
@@ -93,20 +104,11 @@ public class User {
         }
         else return false;
     }
-    public void updateBuyingHistory() {
-        /*update BuyingHistory based on cartState*/
-        for(ProductForSale product : cartState.products) {
-            buyingHistory.products.add(product);
-        }
-        for(int quantity : cartState.quantityEachProduct) {
-            buyingHistory.quantityEachProduct.add(quantity);
-        }
-    }
     public void depositToBankAcc(int money) {
         /*deposit to bank account*/
         bankAcc.deposit(money);
     }
-    public void addProductReview(ProductForSale product, ProductForSale.CustomerReview cr) {
-        product.addCustomerReview(cr);
+    public void addProductReview(ProductForSale product, int noOfStars, String review) {
+        product.addCustomerReview(noOfStars, review);
     }
 }
